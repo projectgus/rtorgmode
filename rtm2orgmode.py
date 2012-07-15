@@ -9,9 +9,8 @@ import bottle, milky
 from api_key import API_KEY, API_SECRET
 
 @bottle.route("/")
-@bottle.route("/<frob>")
-def export(frob=None):
-    api = authenticate(frob)
+def export():
+    api = authenticate(bottle.request.query.frob)
     if api is None:
         return
     lists = api.lists.getList()
@@ -46,9 +45,9 @@ def authenticate(frob):
     if frob is not None: # verify the frob
         try:
             token = api.get_token()
-            return api
+            return api # good frob
         except:
-            api.frob = None # bad frob: this might work, sometimes doesn't seem to but it's an uncommon path...
+            api.frob = None # bad frob
     bottle.redirect(api.get_auth_url())
     return None
 
