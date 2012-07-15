@@ -27,8 +27,8 @@ def export():
         yield u"* %s%s\n" % ("DONE " if task_list.archived else "",
                            task_list.name.strip())
         # sort tasks to show non-closed first, then newest closed to oldest closest
-        sort_key = lambda task: (task.task[0].completed or datetime.datetime.max, task.name.strip())
-        for task in reversed(sorted(tasks, key=sort_key)):
+        sort_key = lambda task: (datetime.datetime.max-(task.task[0].completed or datetime.datetime.max), task.name.strip())
+        for task in sorted(tasks, key=sort_key):
             if task.task[0].deleted:
                 continue
             yield u"** %s %s %s\n" % ("DONE" if task.task[0].completed else "",
