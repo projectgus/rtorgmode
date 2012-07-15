@@ -17,7 +17,7 @@ def export():
     bottle.response.content_type = 'text/plain; charset="utf-8"'
     yield u"# %d RTM lists exported by rtm2orgmode %s\n" % (len(lists), datetime.datetime.now().isoformat())
     yield u"#\n"
-    for task_list in sorted(lists, key=lambda l:l.position):
+    for task_list in sorted(lists, key=lambda l:(l.position,l.name)):
         if task_list.deleted or task_list.smart:
             continue
         list_todo = ""
@@ -26,7 +26,9 @@ def export():
             continue
         yield u"* %s %s\n" % ("DONE" if task_list.archived else "",
                            task_list.name.strip())
-        for task in tasks:
+        # sort tasks to show non-closed first, then newest closed to oldest closest
+        sort_key = lambda task: (task.task[0].completed or datetime.datetime.max, task.name.strip())
+        for task in reversed(sorted(tasks, key=sort_key)):
             if task.task[0].deleted:
                 continue
             yield u"** %s %s %s\n" % ("DONE" if task.task[0].completed else "",
