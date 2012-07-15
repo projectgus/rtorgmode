@@ -24,7 +24,7 @@ def export():
         tasks = api.tasks.getList(list_id=task_list.id).lists[0].taskseries
         if len(tasks) == 0:
             continue
-        yield u"* %s %s\n" % ("DONE" if task_list.archived else "",
+        yield u"* %s%s\n" % ("DONE " if task_list.archived else "",
                            task_list.name.strip())
         # sort tasks to show non-closed first, then newest closed to oldest closest
         sort_key = lambda task: (task.task[0].completed or datetime.datetime.max, task.name.strip())
