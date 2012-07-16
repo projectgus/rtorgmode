@@ -1,5 +1,10 @@
 #!/usr/bin/env python
-
+#
+# A Remember The Milk exporter web app for emacs org-mode users.
+#
+# Copyright 2012 Angus Gratton, licensed under the MIT License as
+# described in the accompanying file README.md.
+#
 import datetime
 import bottle
 import milky
