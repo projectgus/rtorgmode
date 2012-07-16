@@ -1,4 +1,4 @@
-rtm2orgmode is a very simple Python web app. It takes your
+rtorgmode is a very simple Python web app. It takes your
 [Remember The Milk](http://www.rememberthemilk.com/) (aka RTM) task
 lists and exports them in a format compatible with
 [emacs org-mode](http://orgmode.org/).
@@ -10,7 +10,7 @@ certified by Remember The Milk.
 # Using
 
 You can use a
-[hosted version of rtm2orgmode online](http://chainxor.org/rtm2orgmode),
+[hosted version of rtorgmode online](http://chainxor.org/rtm2orgmode),
 but this README shows how to run it standalone on your computer.
 
 
@@ -18,7 +18,7 @@ but this README shows how to run it standalone on your computer.
 
 * [milky](https://bitbucket.org/Surgo/milky/src), a Python RTM
   client. There's no pip/easy_install for this module, so I just copied
-  the "milky" module directory straight into the rtm2orgmode
+  the "milky" module directory straight into the rtorgmode
   directory.
 
 * [Bottle](http://bottlepy.org) web framework (*pip install
@@ -26,7 +26,7 @@ but this README shows how to run it standalone on your computer.
 
 * You'll need your own [RTM API Key](http://www.rememberthemilk.com/services/api/keys.rtm)
 
-* Create a file in the rtm2orgmode directory called "api_key.py" with your RTM API key, like this:
+* Create a file in the rtorgmode directory called "api_key.py" with your RTM API key, like this:
 
 	API_KEY = "myapikeyinquotes"
 	API_SECRET = "myapikeysharedsecretinquotes"
@@ -36,7 +36,7 @@ but this README shows how to run it standalone on your computer.
 
 Running
 
-    python rtm2orgmode.py
+    python rtorgmode.py
 
 Will create a web server running on http://localhost:8000 that you can
 connect to. The first time you connect it will redirect your browser
@@ -44,7 +44,7 @@ to RTM to authorise the app.
 
 # Authorisation
 
-The rtm2orgmode script expects to receive a callback redirect from RTM
+The rtorgmode script expects to receive a callback redirect from RTM
 of the form *localhost:8000/?frob=123456*, with the 123456 frob value
 supplied by RTM to authorise access.
 
@@ -54,13 +54,13 @@ RTM. Look at the URL bar and copy the frob, which is the part between
 *frob=* and *&*. Then paste it into a new URL of the form
 *http://localhost:8000/?frob=* and the exporter will run.
 
-You have to do this every time you run an export, because rtm2orgmode
+You have to do this every time you run an export, because rtorgmode
 doesn't save the RTM authentication token.
 
 
 # License
 
-rtm2orgmode.py is licensed under the MIT license:
+rtorgmode.py is licensed under the MIT license:
 
 Copyright (c) 2012, Angus Gratton
 

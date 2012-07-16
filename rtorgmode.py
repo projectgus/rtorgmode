@@ -22,7 +22,7 @@ def export():
         return
     lists = api.lists.getList()
     bottle.response.content_type = 'text/plain; charset="utf-8"'
-    yield u"# %d RTM lists exported by rtm2orgmode %s\n" % (
+    yield u"# %d RTM lists exported by rtorgmode %s\n" % (
         len(lists),
         datetime.datetime.now().isoformat()
         )
