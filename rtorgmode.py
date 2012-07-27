@@ -6,8 +6,11 @@
 # described in the accompanying file README.md.
 #
 import datetime
+import urllib
 import bottle
 import milky
+from milky.datastructures import SortedDict
+
 
 # you'll need a separate file api_key.py that assigns
 # API_KEY = "myapikey"
@@ -65,7 +68,15 @@ def authenticate(frob):
             return api        # good frob
         except:
             api.frob = None   # bad frob
-    bottle.redirect(api.get_auth_url())
+
+    # bit hacky: this is a slightly modified version of milky's api.get_auth_url() that generates the URL without a frob param
+    auth_params = SortedDict([
+            ('api_key', API_KEY),
+            ('perms', 'read') ])
+    auth_params['api_sig'] = api._API__sign(auth_params)
+    AUTH_URL = 'http://www.rememberthemilk.com/services/auth/'
+    auth_url = '%s?%s' % (AUTH_URL, urllib.urlencode(auth_params))
+    bottle.redirect(auth_url)
     return None
 
 
