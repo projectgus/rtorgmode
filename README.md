@@ -7,14 +7,13 @@ This product uses the Remember The Milk API but is not endorsed or
 certified by Remember The Milk.
 
 
-# Using
+# Hosted Version
 
-You can use a
-[hosted version of rtorgmode online](http://chainxor.org/rtm2orgmode),
+You can use a [hosted version of rtorgmode online](http://chainxor.org/rtorgmode),
 but this README shows how to run it standalone on your computer.
 
 
-# Prerequisites
+# Prerequisites To Run It Yourself
 
 * [milky](https://bitbucket.org/Surgo/milky/src), a Python RTM
   client. There's no pip/easy_install for this module, so I just copied
@@ -32,15 +31,15 @@ but this README shows how to run it standalone on your computer.
 	API_SECRET = "myapikeysharedsecretinquotes"
 
 
-# Running Locally
+# Running It Yourself
 
-Running
+Run:
 
     python rtorgmode.py
 
-Will create a web server running on http://localhost:8000 that you can
-connect to. The first time you connect it will redirect your browser
-to RTM to authorise the app.
+This creates a web server running on http://localhost:8000. The first
+time you load this URL in your browser it will redirect you to RTM to
+authorise your app.
 
 # Authorisation
 
@@ -48,14 +47,15 @@ The rtorgmode script expects to receive a callback redirect from RTM
 of the form *localhost:8000/?frob=123456*, with the 123456 frob value
 supplied by RTM to authorise access.
 
-You can cheat on your local computer by looking at the *Application
-successfully authorized* screen after you authorise your app in
-RTM. Look at the URL bar and copy the frob, which is the part between
-*frob=* and *&*. Then paste it into a new URL of the form
-*http://localhost:8000/?frob=* and the exporter will run.
+When running locally and standalone, you can get by if you look at the
+*Application successfully authorized* page that appears after you
+authorise your app in RTM. Look at the URL bar and copy the frob,
+which is the part between *frob=* and *&*. Then paste it into a new
+URL of the form *http://localhost:8000/?frob=* and the exporter will
+run.
 
 You have to do this every time you run an export, because rtorgmode
-doesn't save the RTM authentication token.
+doesn't save any information, including the RTM authentication token.
 
 
 # License
