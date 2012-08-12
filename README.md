@@ -27,8 +27,8 @@ but this README shows how to run it standalone on your computer.
 
 * Create a file in the rtorgmode directory called "api_key.py" with your RTM API key, like this:
 
-	API_KEY = "myapikeyinquotes"
-	API_SECRET = "myapikeysharedsecretinquotes"
+        API_KEY = "myapikeyinquotes"
+        API_SECRET = "myapikeysharedsecretinquotes"
 
 
 # Running It Yourself
@@ -37,7 +37,7 @@ Run:
 
     python rtorgmode.py
 
-This creates a web server running on http://localhost:8000. The first
+This creates a web server that you can view as http://localhost:8000. The first
 time you load this URL in your browser it will redirect you to RTM to
 authorise your app.
 
@@ -47,12 +47,12 @@ The rtorgmode script expects to receive a callback redirect from RTM
 of the form *localhost:8000/?frob=123456*, with the 123456 frob value
 supplied by RTM to authorise access.
 
-When running locally and standalone, you can get by if you look at the
-*Application successfully authorized* page that appears after you
-authorise your app in RTM. Look at the URL bar and copy the frob,
-which is the part between *frob=* and *&*. Then paste it into a new
-URL of the form *http://localhost:8000/?frob=* and the exporter will
-run.
+When running standalone on your local computer, you won't get the callback.
+However, you can emulate it. Follow the authorisation process on the RTM site
+until you get to the *Application successfully authorized* page. Look at the full URL of that page
+and copy the "frob", which is the part between *frob=* and *&* in the text of the URL. Then paste
+it into a new URL of the form *http://localhost:8000/?frob=put_the_frob_here*
+and the exporter will run.
 
 You have to do this every time you run an export, because rtorgmode
 doesn't save any information, including the RTM authentication token.
